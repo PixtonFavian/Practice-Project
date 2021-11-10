@@ -4,40 +4,41 @@ import { orange } from "@mui/material/colors";
 import CardInterface from "../interfaces/CardInterface";
 import Card from "./Card";
 import { Expeditions } from "../Expeditions";
+import { colorMap } from "../utils/colorMap";
+import { useEffect } from "react";
 
 interface CardFieldProps {
   cardList: CardInterface[];
 }
-const field: CardInterface[] = [
-  {
-    value: 4,
-    expedition: Expeditions.DESERT,
-    isWager: false,
-  },
-  {
-    value: 2,
-    expedition: Expeditions.GRASSLAND,
-    isWager: false,
-  },
-  {
-    value: 7,
-    expedition: Expeditions.OCEAN,
-    isWager: false,
-  },
-  {
-    value: 9,
-    expedition: Expeditions.TUNDRA,
-    isWager: false,
-  },
-  {
-    value: 10,
-    expedition: Expeditions.VOLCANIC,
-    isWager: false,
-  },
-];
 
-export default function CardField(props: CardFieldProps) {
+function CardHolder(props: { expedition: Expeditions }) {
+  return (
+    <Box
+      sx={{
+        minWidth: 70,
+        bgcolor: colorMap[props.expedition],
+        px: 0.5,
+        py: 0.5,
+        m: 0.25,
+        borderRadius: 1,
+        textAlign: "center",
+        color: "white",
+        alignSelf: "stretch",
+      }}
+    ></Box>
+  );
+}
+
+export default function DiscardField(props: CardFieldProps) {
   const hand = props.cardList;
+
+  const expeditions = [
+    Expeditions.DESERT,
+    Expeditions.GRASSLAND,
+    Expeditions.TUNDRA,
+    Expeditions.OCEAN,
+    Expeditions.VOLCANIC,
+  ];
   return (
     <Box
       sx={{
@@ -55,8 +56,8 @@ export default function CardField(props: CardFieldProps) {
         my: 0.5,
       }}
     >
-      {field.map((card: CardInterface) => (
-        <Card card={card} />
+      {expeditions.map((expedition) => (
+        <CardHolder expedition={expedition} />
       ))}
     </Box>
   );

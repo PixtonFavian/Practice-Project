@@ -1,6 +1,6 @@
 import "./App.css";
 import Box, { BoxProps } from "@mui/material/Box";
-import { blue, blueGrey } from "@mui/material/colors";
+import { blueGrey } from "@mui/material/colors";
 import { Container, Typography } from "@mui/material";
 
 import { useState } from "react";
@@ -27,6 +27,7 @@ const Contact = () => {
     </Box>
   );
 };
+
 const Home = () => {
   return (
     <Box

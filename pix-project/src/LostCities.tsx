@@ -9,13 +9,6 @@ import CardField from "./components/CardField";
 import DiscardField from "./components/DiscardField";
 
 const opacity = 400;
-export const bgColorMap = {
-  [Expeditions.DESERT]: orange[opacity],
-  [Expeditions.GRASSLAND]: green[opacity],
-  [Expeditions.OCEAN]: blue[opacity],
-  [Expeditions.TUNDRA]: blueGrey[opacity],
-  [Expeditions.VOLCANIC]: red[opacity],
-};
 
 const hand: CardInterface[] = [
   {
@@ -57,12 +50,6 @@ const hand: CardInterface[] = [
   { value: 0, expedition: Expeditions.OCEAN, isWager: true },
 ];
 export default function LostCities() {
-  //fetch cards from server
-  //fetch expedition from server
-  //fetch top card from server
-  //fetch player from server
-  //fetch player hand from server
-
   return (
     <>
       <Box

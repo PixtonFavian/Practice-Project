@@ -1,8 +1,7 @@
 import { Box } from "@mui/system";
 import { Expeditions } from "../Expeditions";
 import useHover from "../hooks/useHover";
-import { bgColorMap } from "../LostCities";
-
+import { colorMap } from "../utils/colorMap";
 interface CardProps {
   card: {
     value: number;
@@ -19,7 +18,7 @@ export default function Card(props: CardProps) {
         sx={{
           border: hovered ? "5px solid #fff" : null,
           minWidth: 70,
-          bgcolor: bgColorMap[props.card.expedition],
+          bgcolor: colorMap[props.card.expedition],
           px: 0.5,
           py: 0.5,
           m: 0.25,
