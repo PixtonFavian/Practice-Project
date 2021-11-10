@@ -1,4 +1,4 @@
-import { Expeditions } from "../Expeditions";
+import { Expeditions } from "../models/Expeditions.enum";
 import { orange, green, blue, blueGrey, red } from "@mui/material/colors";
 
 interface ColorMap {

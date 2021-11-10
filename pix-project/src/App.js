@@ -8,7 +8,8 @@ import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import NavItem from "./components/NavItem.js";
-import LostCities from "./LostCities";
+import LostCities from "./pages/LostCities";
+import Home from "./pages/Home";
 
 const Contact = () => {
   return (
@@ -28,31 +29,13 @@ const Contact = () => {
   );
 };
 
-const Home = () => {
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignContent: "center",
-        bgcolor: blueGrey[700],
-        color: "white",
-      }}
-    >
-      <Typography variant="h4" sx={{ p: 2 }}>
-        Home
-      </Typography>
-    </Box>
-  );
-};
-
 function App() {
   const [selectedNavItem, setSelectedNavItem] = useState(0);
   const navItems = [
     {
       id: 0,
       label: "Home",
-      href: "/",
+      href: "/home",
     },
     {
       id: 1,
@@ -69,8 +52,8 @@ function App() {
   return (
     <>
       <Router>
-        <Box sx={{ bgcolor: "white", color: blueGrey[600] }}>
-          <Typography variant="h5" sx={{ p: 2 }}>
+        <Box sx={{ bgcolor: blueGrey[50], color: blueGrey[700] }}>
+          <Typography variant="h6" sx={{ p: 2 }}>
             Pixton Project
           </Typography>
         </Box>
@@ -107,7 +90,7 @@ function App() {
         <Routes>
           <Route path="/lost-cities" element={<LostCities />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
         </Routes>
       </Router>
     </>

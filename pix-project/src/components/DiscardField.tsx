@@ -1,14 +1,15 @@
 import { cardMediaClasses } from "@mui/material";
 import { Box } from "@mui/system";
 import { orange } from "@mui/material/colors";
-import CardInterface from "../interfaces/CardInterface";
-import Card from "./Card";
-import { Expeditions } from "../Expeditions";
+import { Expeditions } from "../models/Expeditions.enum";
 import { colorMap } from "../utils/colorMap";
+import { ExpeditionMapType } from "../models/ExpeditionMapType.model";
+import CardInterface from "../models/CardInterface.model";
+import Card from "./Card";
 import { useEffect } from "react";
 
 interface CardFieldProps {
-  cardList: CardInterface[];
+  cardMap: ExpeditionMapType;
 }
 
 function CardHolder(props: { expedition: Expeditions }) {
@@ -30,8 +31,6 @@ function CardHolder(props: { expedition: Expeditions }) {
 }
 
 export default function DiscardField(props: CardFieldProps) {
-  const hand = props.cardList;
-
   const expeditions = [
     Expeditions.DESERT,
     Expeditions.GRASSLAND,
@@ -39,6 +38,25 @@ export default function DiscardField(props: CardFieldProps) {
     Expeditions.OCEAN,
     Expeditions.VOLCANIC,
   ];
+
+  const discardCards: any[] = new Array(expeditions.length).fill(null);
+
+  for (const e of expeditions) {
+    if (props.cardMap[e].length !== 0) {
+      const card = props.cardMap[e].at(-1);
+      if (card !== undefined) {
+        discardCards[e] = (
+          <Card
+            id={card.id}
+            card={card}
+            onClick={() => console.log("discardPicked")}
+          />
+        );
+      }
+    } else {
+      discardCards[e] = <CardHolder expedition={e} />;
+    }
+  }
   return (
     <Box
       sx={{
@@ -48,7 +66,7 @@ export default function DiscardField(props: CardFieldProps) {
         alignItems: "flex-end",
         flexWrap: "wrap",
         maxWidth: "lg",
-        minHeight: "120px",
+        minHeight: 100,
         bgcolor: orange[100],
         flexGrow: 0,
         borderRadius: 1,
@@ -56,9 +74,7 @@ export default function DiscardField(props: CardFieldProps) {
         my: 0.5,
       }}
     >
-      {expeditions.map((expedition) => (
-        <CardHolder expedition={expedition} />
-      ))}
+      {discardCards}
     </Box>
   );
 }

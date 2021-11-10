@@ -1,10 +1,11 @@
 import { cardMediaClasses } from "@mui/material";
 import { Box } from "@mui/system";
-import { orange } from "@mui/material/colors";
-import CardInterface from "../interfaces/CardInterface";
+import { blueGrey } from "@mui/material/colors";
+import CardInterface from "../models/CardInterface.model";
 import Card from "./Card";
 
 interface CardFieldProps {
+  handleCardPick: (id: Number) => void;
   cardList: CardInterface[];
 }
 
@@ -18,9 +19,9 @@ export default function CardField(props: CardFieldProps) {
         justifyContent: "space-between",
         alignItems: "flex-end",
         flexWrap: "wrap",
-        maxWidth: "lg",
+        maxWidth: "md",
         minHeight: "120px",
-        bgcolor: orange[100],
+        bgcolor: blueGrey[100],
         flexGrow: 0,
         borderRadius: 1,
         p: 1,
@@ -28,7 +29,7 @@ export default function CardField(props: CardFieldProps) {
       }}
     >
       {hand.map((card: CardInterface) => (
-        <Card card={card} />
+        <Card id={card.id} card={card} onClick={props.handleCardPick} />
       ))}
     </Box>
   );
