@@ -1,4 +1,3 @@
-import { Expeditions } from "./Expeditions.enum";
 import CardInterface from "./CardInterface.model";
 
 //create an typescript interface of expedition enum type and a array of cards

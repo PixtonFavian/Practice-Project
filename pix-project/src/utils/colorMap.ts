@@ -1,10 +1,6 @@
 import { Expeditions } from "../models/Expeditions.enum";
 import { orange, green, blue, blueGrey, red } from "@mui/material/colors";
 
-interface ColorMap {
-  [key: number]: any;
-}
-
 const opacity = 400;
 export const colorMap = {
   [Expeditions.DESERT]: orange[opacity],

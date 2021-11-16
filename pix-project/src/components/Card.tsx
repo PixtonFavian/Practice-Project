@@ -4,6 +4,7 @@ import useHover from "../hooks/useHover";
 import CardInterface from "../models/CardInterface.model";
 import { colorMap } from "../utils/colorMap";
 import { blueGrey } from "@mui/material/colors";
+import { CardActionArea } from "@mui/material";
 interface CardProps {
   id: number;
   onClick: (id: Number) => void;
@@ -20,25 +21,29 @@ export default function Card(props: CardProps) {
   }
   return (
     <div onClick={props.onClick.bind(null, props.id)} ref={ref}>
-      <Box
-        sx={{
-          borderColor: blueGrey[700],
-          border: props.card.chosen ? "7px solid #FFD200" : "2px solid #5376b0",
-          minWidth: 70,
-          bgcolor: colorMap[props.card.expedition],
-          px: 0.5,
-          py: 0.5,
-          m: 0.25,
-          borderRadius: 1,
-          textAlign: "center",
-          color: "white",
-          alignSelf: "stretch",
-          boxShadow: checkShadow(),
-        }}
-      >
-        {props.card.isWager ? <h3>{"W"}</h3> : <h3>{props.card.value}</h3>}
-        <p>{expedition}</p>
-      </Box>
+      <CardActionArea>
+        <Box
+          sx={{
+            borderColor: blueGrey[700],
+            border: props.card.chosen
+              ? "7px solid #FFD200"
+              : "2px solid #5376b0",
+            minWidth: 70,
+            bgcolor: colorMap[props.card.expedition],
+            px: 0.5,
+            py: 0.5,
+            m: 0.25,
+            borderRadius: 1,
+            textAlign: "center",
+            color: "white",
+            alignSelf: "stretch",
+            boxShadow: checkShadow(),
+          }}
+        >
+          {props.card.isWager ? <h3>{"W"}</h3> : <h3>{props.card.value}</h3>}
+          <p>{expedition}</p>
+        </Box>
+      </CardActionArea>
     </div>
   );
 }

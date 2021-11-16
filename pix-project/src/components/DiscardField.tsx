@@ -1,12 +1,9 @@
-import { cardMediaClasses } from "@mui/material";
 import { Box } from "@mui/system";
 import { orange } from "@mui/material/colors";
 import { Expeditions } from "../models/Expeditions.enum";
 import { colorMap } from "../utils/colorMap";
 import { ExpeditionMapType } from "../models/ExpeditionMapType.model";
-import CardInterface from "../models/CardInterface.model";
 import Card from "./Card";
-import { useEffect } from "react";
 
 interface CardFieldProps {
   cardMap: ExpeditionMapType;

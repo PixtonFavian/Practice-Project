@@ -1,4 +1,3 @@
-import { cardMediaClasses } from "@mui/material";
 import { Box } from "@mui/system";
 import { blueGrey } from "@mui/material/colors";
 import CardInterface from "../models/CardInterface.model";

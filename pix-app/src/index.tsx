@@ -3,14 +3,20 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+
 import { Provider } from "react-redux";
-import { store } from "./app/store";
+import { store } from "./reduxStore/store";
+
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+
+//
+
 const darkTheme = createTheme({
   palette: {
-    mode: "dark",
+    mode: "light",
   },
 });
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

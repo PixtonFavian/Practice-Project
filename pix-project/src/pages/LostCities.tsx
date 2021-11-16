@@ -1,16 +1,14 @@
 import { Container } from "@mui/material";
-import { blueGrey, orange, green, blue, red } from "@mui/material/colors";
+import { orange } from "@mui/material/colors";
 import { Box } from "@mui/system";
-import { Paper, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import { Expeditions } from "../models/Expeditions.enum";
-import Card from "../components/Card";
 import CardInterface from "../models/CardInterface.model";
 import CardField from "../components/CardField";
 import DiscardField from "../components/DiscardField";
-import ExpeditionField from "../components/ExpeditionField";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ExpeditionMapType } from "../models/ExpeditionMapType.model";
-
+import { useAppSelector } from "../app/hooks";
 const hand: CardInterface[] = [
   {
     id: 0,
@@ -83,18 +81,19 @@ const DiscardExpeditionMap: ExpeditionMapType = {
   3: [],
   4: [],
 };
-const PlayerExpeditionMap: ExpeditionMapType = {
-  0: [],
-  1: [],
-  2: [],
-  3: [],
-  4: [],
-};
+// const PlayerExpeditionMap: ExpeditionMapType = {
+//   0: [],
+//   1: [],
+//   2: [],
+//   3: [],
+//   4: [],
+// };
 
 export default function LostCities() {
+  const userState = useAppSelector((state) => state.name.user);
+
   const [handState, setHandState] = useState<CardInterface[]>(hand);
-  const [expeditionState, setExpeditionState] =
-    useState<ExpeditionMapType>(PlayerExpeditionMap);
+
   const [discardState, setDiscardState] =
     useState<ExpeditionMapType>(DiscardExpeditionMap);
   const [chosenCard, setChosenCard] = useState<CardInterface | null>(null);
@@ -125,17 +124,6 @@ export default function LostCities() {
     setHandState((prevHand) => {
       return prevHand.filter((card) => card.id !== id);
     });
-  }
-
-  function addToExpedition(): void {
-    if (chosenCard) {
-      const prevExpedition = expeditionState;
-      prevExpedition[chosenCard.expedition].push(chosenCard);
-      setExpeditionState(prevExpedition);
-      discardFromHand(chosenCard.id);
-      unSelectChosenCard();
-    }
-    return;
   }
 
   function addToDiscard(): void {
@@ -184,7 +172,7 @@ export default function LostCities() {
               color: "maroon",
             }}
           >
-            Opponent
+            {userState.opponentName}
           </Box>
           <DiscardField cardMap={discardState} />
           {/* <ExpeditionField cardMap={handState} /> */}
